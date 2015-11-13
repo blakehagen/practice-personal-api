@@ -5,31 +5,28 @@ var occupations = {
     occupations: ['Account Manager', 'Coach', 'Customer Success Manager', 'Web Developer', 'Realtor', 'Student']
 };
 
-var hobbies = {
-    hobbies: [
-        {
-            name: 'watching sports',
-            when: 'current'
-        },
-        {
-            name: 'playing sports',
-            when: 'past'
-        },
-        {
-            name: 'Watching cartoons',
-            when: 'past'
-        },
-        {
-            name: 'quacking',
-            when: 'current'
-        }]
-};
+var hobbies = [
+    {
+        name: 'watching sports',
+        when: 'current'
+    },
+    {
+        name: 'playing sports',
+        when: 'past'
+    },
+    {
+        name: 'Watching cartoons',
+        when: 'past'
+    },
+    {
+        name: 'quacking',
+        when: 'current'
+    }];
 
 module.exports = {
 
     getName: function (req, res, next) {
         res.status(200).json(name);
-        console.log('I got you the name!');
     },
 
     getLocation: function (req, res, next) {
@@ -37,6 +34,12 @@ module.exports = {
     },
 
     getOccupations: function (req, res, next) {
+        if (req.query.order === 'desc') {
+            occupations = occupations.occupations.sort();
+        } else if (req.query.order === 'asc') {
+            occupations = occupations.occupations.sort().reverse();
+        }
+
         res.status(200).json(occupations);
     },
 
@@ -46,6 +49,16 @@ module.exports = {
 
     getHobbies: function (req, res, next) {
         res.status(200).json(hobbies);
+    },
+
+    getHobbyType: function (req, res, next) {
+        var hobbyType = [];
+        for (var i = 0; i < hobbies.length; i++) {
+            if (hobbies[i].when === req.params.when) {
+                hobbyType.push(hobbies[i]);
+            }
+        }
+        res.status(200).json(hobbyType);
     }
 
 

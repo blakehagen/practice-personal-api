@@ -14,6 +14,7 @@ app.get('/location', MainCtrl.getLocation);
 app.get('/occupations', MainCtrl.getOccupations);
 app.get('/occupations/latest', MainCtrl.getLatest);
 app.get('/hobbies', MainCtrl.getHobbies);
+app.get('/hobbies/:when', MainCtrl.getHobbyType);
 
 
 
