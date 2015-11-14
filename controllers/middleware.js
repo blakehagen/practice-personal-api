@@ -1,4 +1,4 @@
-
+var id = 3;
 module.exports = {
 
     addHeaders: function (req, res, next) {
@@ -11,6 +11,12 @@ module.exports = {
             'X-Frame-Options': 'SAMEORIGIN',
             'Content-Security-Policy': "default-src 'self' devmountain.github.io"
         });
+        next();
+    },
+
+    generateId: function (req, res, next) {
+        id = id + 1;
+        req.myId = id;
         next();
     }
 }

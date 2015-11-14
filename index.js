@@ -15,6 +15,17 @@ app.get('/occupations', MainCtrl.getOccupations);
 app.get('/occupations/latest', MainCtrl.getLatest);
 app.get('/hobbies', MainCtrl.getHobbies);
 app.get('/hobbies/:when', MainCtrl.getHobbyType);
+app.get('/skills', MainCtrl.getSkills);
+
+
+
+app.put('/name', MainCtrl.changeName);
+app.put('/location', MainCtrl.changeLocation);
+
+app.post('/occupations', MainCtrl.addOccupation);
+// app.post('/hobbies', MainCtrl.addHobby);
+
+app.post('/skills', MiddlewareCtrl.generateId, MainCtrl.postNewSkill);
 
 
 
